@@ -14,5 +14,14 @@ public enum PacketType
     Pong,
 
     ServerMetaQuery,
-    ServerMetaResponse
+    ServerMetaResponse,
+
+    ServerJoinRequest,
+    ServerJoinResponse,
+    ServerKick,
+
+    ContentRequest,
+    ContentLoad,
+
+    ComponentPacket
 }

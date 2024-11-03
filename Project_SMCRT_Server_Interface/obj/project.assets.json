@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0": {
+      "Project_SMCRT_Server/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Project_SMCRT_Server.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Project_SMCRT_Server.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Project_SMCRT_Server/1.0.0": {
+      "type": "project",
+      "path": "../Project_SMCRT_Server/Project_SMCRT_Server.csproj",
+      "msbuildProject": "../Project_SMCRT_Server/Project_SMCRT_Server.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0": [
+      "Project_SMCRT_Server >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\User\\.nuget\\packages\\": {},
@@ -39,7 +58,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\Project_SMCRT_Server.csproj": {
+              "projectPath": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\Project_SMCRT_Server.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

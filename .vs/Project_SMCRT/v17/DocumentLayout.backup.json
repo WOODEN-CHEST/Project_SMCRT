@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|d:\\workstations\\programming\\projects\\project_smcrt\\project_smcrt_server\\smcrtserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|solutionrelative:project_smcrt_server\\smcrtserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|d:\\workstations\\programming\\projects\\project_smcrt\\project_smcrt_server\\world\\component\\system\\systemmessagequeue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|solutionrelative:project_smcrt_server\\world\\component\\system\\systemmessagequeue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -39,14 +39,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "SMCRTServer.cs",
-              "DocumentMoniker": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\SMCRTServer.cs",
-              "RelativeDocumentMoniker": "Project_SMCRT_Server\\SMCRTServer.cs",
-              "ToolTip": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\SMCRTServer.cs",
-              "RelativeToolTip": "Project_SMCRT_Server\\SMCRTServer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAgAAAAAAAAAA==",
+              "Title": "SystemMessageQueue.cs",
+              "DocumentMoniker": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\World\\Component\\System\\SystemMessageQueue.cs",
+              "RelativeDocumentMoniker": "Project_SMCRT_Server\\World\\Component\\System\\SystemMessageQueue.cs",
+              "ToolTip": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\World\\Component\\System\\SystemMessageQueue.cs",
+              "RelativeToolTip": "Project_SMCRT_Server\\World\\Component\\System\\SystemMessageQueue.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-03T00:10:23.387Z",
+              "WhenOpened": "2024-11-03T16:24:34.884Z",
               "EditorCaption": ""
             }
           ]

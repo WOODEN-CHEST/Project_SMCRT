@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -12,7 +12,7 @@
       <HintPath>..\..\GHDF\GHDF_CSharp\GHDF_CSharp\bin\Release\net8.0\GHDF_CSharp.dll</HintPath>
     </Reference>
     <Reference Include="GHEngine">
-      <HintPath>..\..\GHEngine\GHEngine\bin\Release\net7.0\GHEngine.dll</HintPath>
+      <HintPath>..\..\GHEngine\GHEngine\obj\Release\net8.0\GHEngine.dll</HintPath>
     </Reference>
     <Reference Include="GHEngineJSON">
       <HintPath>..\..\JSON\C#\CSharpWCJson\CSharpWCJson\bin\Release\net7.0\GHEngineJSON.dll</HintPath>

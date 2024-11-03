@@ -24,8 +24,5 @@ public abstract class SMCRTPacket
 
 
     // Methods.
-    public GHDFCompound Encode()
-    {
-
-    }
+    public abstract GHDFCompound Encode();
 }

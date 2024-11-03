@@ -1,0 +1,66 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Project_SMCRT_Server_Interface/1.0.0": {
+        "dependencies": {
+          "Project_SMCRT_Server": "1.0.0",
+          "GHEngine": "1.0.0.0"
+        },
+        "runtime": {
+          "Project_SMCRT_Server_Interface.dll": {}
+        }
+      },
+      "Project_SMCRT_Server/1.0.0": {
+        "runtime": {
+          "Project_SMCRT_Server.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "GHEngine/1.0.0.0": {
+        "runtime": {
+          "GHEngine.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "GHDF_CSharp/1.0.0.0": {
+        "runtime": {
+          "GHDF_CSharp.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Project_SMCRT_Server_Interface/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Project_SMCRT_Server/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "GHEngine/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "GHDF_CSharp/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

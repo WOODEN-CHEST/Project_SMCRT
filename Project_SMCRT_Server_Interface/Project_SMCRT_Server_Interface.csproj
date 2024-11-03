@@ -7,4 +7,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Project_SMCRT_Server\Project_SMCRT_Server.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="GHEngine">
+      <HintPath>..\..\GHEngine\GHEngine\obj\Release\net8.0\GHEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
