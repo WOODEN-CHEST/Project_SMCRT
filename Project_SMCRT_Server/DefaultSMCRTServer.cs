@@ -2,24 +2,28 @@
 using GHEngine.Collections;
 using GHEngine.Logging;
 using Project_SMCRT_Server.Pack;
+using Project_SMCRT_Server.Packet;
+using Project_SMCRT_Server.Packet.Server;
+using Project_SMCRT_Server.Player;
 using Project_SMCRT_Server.World;
-using System;
-using System.Collections.Generic;
+using Project_SMCRT_Server.World.Monitor;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project_SMCRT_Server;
 
 public class DefaultSMCRTServer : ISMCRTServer
 {
+    // Static fields.
+    public const double DEFAULT_TIME_BETWEEN_PACKETS_SECONDS = 0.05d;
+    public const string DIR_DATAPACKS = "datapacks";
+
+
     // Fields.
     public Version ServerVersion { get; } = new(1, 0, 0, 0); 
     public ILogger? Logger { get; private init; }
     public bool IsInternalServer { get; private init; }
-    public IDataPack CombinedDataPack { get; private set; } = new DefaultDataPack();
-    public IEnumerable<IGameWorld> Worlds => _worlds;
+    public IDataPack Pack { get; private set; } = new DefaultDataPack();
+    public IEnumerable<IGameWorld> Worlds => _worlds.Values.Select(bundle => bundle.World);
     public double SimulationSpeed { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public bool IsPaused
     {
@@ -36,19 +40,33 @@ public class DefaultSMCRTServer : ISMCRTServer
 
 
     // Private fields.
-    private readonly HashSet<IGameWorld> _worlds = new();
+    private readonly IPlayerManager _playerManager;
+    private readonly Dictionary<ulong, GameWorldBundle> _worlds = new();
     private readonly DiscreteTimeCollection<Action> _scheduledActions = new();
+    private readonly string _rootPath;
+    private readonly ServerPacketCreator _packetCreator = new();
 
     private bool _isRunning = false;
     private bool _isPaused = false;
     private readonly AutoResetEvent _unpauseEvent = new(false);
 
+    private TimeSpan _timeBetweenPacketSends = TimeSpan.FromSeconds(DEFAULT_TIME_BETWEEN_PACKETS_SECONDS);
+    private TimeSpan _timeSinceLastPacket = TimeSpan.Zero;
+
 
     // Constructors.
-    public DefaultSMCRTServer(SMCRTServerOptions options, ILogger? logger = null, bool isInternalServer = false)
+    public DefaultSMCRTServer(SMCRTServerOptions options,
+        string rootPath,
+        ILogger? logger, 
+        IPacketReceiver? receiver, 
+        bool isInternalServer)
     {
         Logger = logger == null ? null : new ServerLogger(logger);
         IsInternalServer = isInternalServer;
+        _rootPath = rootPath ?? throw new ArgumentNullException(nameof(rootPath));
+        IClientPacketProcessor PacketProcessor = new DefaultClientPacketProcessor(this);
+        _playerManager = isInternalServer ? new IntegratedPlayerManager(receiver!, PacketProcessor)
+            : new StandalonePlayerManager(PacketProcessor, options.ServerAddress!, options.ServerPort!.Value, Logger);
     }
 
 
@@ -70,9 +88,9 @@ public class DefaultSMCRTServer : ISMCRTServer
     {
         _worlds.Clear();
 
-        IGameWorld CreatedWorld = new DefaultGameWorld(CombinedDataPack);
+        IGameWorld CreatedWorld = new DefaultGameWorld(0uL, Pack);
 
-        _worlds.Add(CreatedWorld);
+        _worlds.Add(1uL, new(CreatedWorld, new DefaultWorldMonitor(CreatedWorld)));
         Logger?.Info("Created new world");
     }
 
@@ -94,14 +112,37 @@ public class DefaultSMCRTServer : ISMCRTServer
 
             ExecuteScheduledActions();
             
-            foreach (IGameWorld World in _worlds)
+            foreach (GameWorldBundle Bundle in _worlds.Values)
             {
-                World.Update(Time);
+                Bundle.World.Update(Time);
             }
+
+            UpdatePackets(Time);
 
             TimeMeasurer.Stop();
             Time.PassedTime = TimeMeasurer.Elapsed;
             Time.TotalTime += TimeMeasurer.Elapsed;
+        }
+    }
+
+    private void UpdatePackets(IProgramTime time)
+    {
+        _timeSinceLastPacket += time.PassedTime;
+        if (_timeSinceLastPacket < _timeBetweenPacketSends)
+        {
+            return;
+        }
+        _timeSinceLastPacket = TimeSpan.Zero;
+
+        foreach (GameWorldBundle Bundle in _worlds.Values)
+        {
+            foreach (ServerPacket Packet in _packetCreator.GetPackets(Bundle.Monitor))
+            {
+                foreach (ulong PlayerID in _playerManager.Players)
+                {
+                    _playerManager.SendPacket(PlayerID, Packet);
+                }
+            }
         }
     }
 
@@ -111,13 +152,27 @@ public class DefaultSMCRTServer : ISMCRTServer
     {
         try
         {
-            _isRunning = true;
-            Logger?.Info($"Started Project S.M.C.R.T server version {ServerVersion} ({(IsInternalServer ? "Integrated" : "Standalone")})");
+            Logger?.Info("Initializing server");
+            Pack = new JSONPackParser().ParseCombinedPack(Path.Combine(_rootPath, DIR_DATAPACKS));
+            Logger?.Info("Parsed all data-packs");
 
+            _isRunning = true;
+            
+            _playerManager.Start();
             InitializeWorlds();
+
+            Logger?.Info($"Started running Project S.M.C.R.T " +
+                $"server version {ServerVersion} ({(IsInternalServer ? "Integrated" : "Standalone")})");
             ExecuteMainLoop();
 
-            Logger?.Info($"Stopped server");
+            Logger?.Info($"Stopping server");
+            _playerManager.End();
+
+            Logger?.Info($"Server stopped");
+        }
+        catch (PackContentException e)
+        {
+            Logger?.Error($"Invalid DataPack content, cannot run server: {e.Message}");
         }
         catch (Exception e)
         {
@@ -138,4 +193,19 @@ public class DefaultSMCRTServer : ISMCRTServer
             _unpauseEvent.Set();
         }
     }
+
+    public IGameWorld? GetWorld(ulong id)
+    {
+        _worlds.TryGetValue(id, out var WorldBundle);
+        return WorldBundle?.World;
+    }
+
+    public void ReceivePacket(SMCRTPacket packet)
+    {
+        _playerManager.ReceivePacket(packet);
+    }
+
+
+    // Types.
+    private record class GameWorldBundle(IGameWorld World, IWorldMonitor Monitor);
 }

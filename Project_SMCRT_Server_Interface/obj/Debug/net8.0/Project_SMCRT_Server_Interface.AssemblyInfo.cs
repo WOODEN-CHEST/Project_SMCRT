@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Project_SMCRT_Server_Interface")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9ae082e92e9ec5faa14216f032d8ea07b639445e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8f6cda7dbb01b03a0a1ffe233d441395fc003f1b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Project_SMCRT_Server_Interface")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Project_SMCRT_Server_Interface")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

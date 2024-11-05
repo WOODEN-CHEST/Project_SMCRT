@@ -17,13 +17,13 @@ public class ComponentPacket : ServerPacket
 
 
     // Constructors,
-    public ComponentPacket(ComponentPacketType type, ulong entityID, EntityComponent component) : base(PacketType.ComponentPacket)
+    public ComponentPacket(ComponentPacketType type, ulong entityID, EntityComponent component) : base(PacketType.ComponentChange)
     {
         Entity = entityID;
         Component = component ?? throw new ArgumentNullException(nameof(component));
     }
 
-    public ComponentPacket(GHDFCompound encodedPacket) : base(PacketType.ComponentPacket)
+    public ComponentPacket(GHDFCompound encodedPacket) : base(PacketType.ComponentChange)
     {
 
     }

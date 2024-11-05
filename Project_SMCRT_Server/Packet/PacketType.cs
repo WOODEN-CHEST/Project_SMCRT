@@ -10,12 +10,11 @@ public enum PacketType
 {
     None = 0,
 
-    Ping,
-    Pong,
-
+    // Out of Game
     ServerMetaQuery,
     ServerMetaResponse,
 
+    // Login.
     ServerJoinRequest,
     ServerJoinResponse,
     ServerKick,
@@ -23,5 +22,21 @@ public enum PacketType
     ContentRequest,
     ContentLoad,
 
-    ComponentPacket
+    // In-Game
+    Ping,
+    Pong,
+
+    ClientChat,
+    ChatMessageShow,
+
+
+    EntityInitialize,
+    InitializeFinish,
+
+    ComponentChange,
+    EntityChange,
+
+    UserInput,
+    SpecialRequest,
+    ServerSpecialEvent
 }

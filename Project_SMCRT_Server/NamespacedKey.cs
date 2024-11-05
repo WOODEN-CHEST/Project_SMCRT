@@ -10,6 +10,7 @@ public class NamespacedKey
 {
     // Static fields.
     public const string NAMESPACE_SMCRT = "smcrt";
+    public const char SPERATOR = ':';
 
 
     // Fields.
@@ -22,6 +23,52 @@ public class NamespacedKey
     {
         Namespace = nameSpace ?? throw new ArgumentNullException(nameof(nameSpace));
         Key = key ?? throw new ArgumentNullException(nameof(key));
+
+        VerifyString(Namespace);
+        VerifyString(Key);
+    }
+
+    public NamespacedKey(string fullKey)
+    {
+        int Separator = fullKey.IndexOf(SPERATOR);
+        if (Separator == -1)
+        {
+            throw new ArgumentNullException("Missing namespace separator");
+        }
+        if (Separator == fullKey.Length - 1)
+        {
+            throw new ArgumentNullException("Missing value");
+        }
+        if (Separator == 0)
+        {
+            throw new ArgumentNullException("Missing namespace");
+        }
+
+        Namespace = fullKey[..Separator];
+        Key = fullKey[(Separator + 1)..];
+
+        VerifyString(Namespace);
+        VerifyString(Key);
+    }
+
+
+    // Private methods.
+    private void VerifyString(string stringToVerify)
+    {
+        foreach (char Character in stringToVerify)
+        {
+            if (!(char.IsAsciiLetter(Character) || char.IsAsciiDigit(Character) || (Character == '_')))
+            {
+                throw new ArgumentException($"Invalid character in string: '{Character}'");
+            }
+        }
+    }
+
+
+    // Static methods.
+    public static NamespacedKey Default(string key)
+    {
+        return new NamespacedKey(NAMESPACE_SMCRT, key);
     }
 
 

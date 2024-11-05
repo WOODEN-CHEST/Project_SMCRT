@@ -10,7 +10,7 @@ namespace Project_SMCRT_Server.World.Component;
 public class MotionComponent : EntityComponent
 {
     // Static fields.
-    public static readonly NamespacedKey KEY = new(NamespacedKey.NAMESPACE_SMCRT, "motion");
+    public static readonly NamespacedKey KEY = NamespacedKey.Default("motion");
 
 
     // Fields.

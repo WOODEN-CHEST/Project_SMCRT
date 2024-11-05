@@ -34,6 +34,7 @@ public class ServerLogger : ILogger
         return $"{PREFIX} {message}";
     }
 
+
     // Inherited methods.
     public string ConvertToLoggedMessage(LogLevel level, DateTime timeStamp, string message)
     {
@@ -62,7 +63,9 @@ public class ServerLogger : ILogger
 
     public void Log(LogLevel level, string message)
     {
-        _baseLogger.Log(level, ProcessMessage(message));
+        LoggerLogEventArgs Args = new(level, message, DateTime.Now);
+        LogMessage?.Invoke(this, Args);
+        _baseLogger.Log(Args.Level, ProcessMessage(Args.Message));
     }
 
     public void Dispose()

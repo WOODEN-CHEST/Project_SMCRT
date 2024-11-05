@@ -9,7 +9,8 @@
       "Project_SMCRT_Server_Interface/1.0.0": {
         "dependencies": {
           "Project_SMCRT_Server": "1.0.0",
-          "GHEngine": "1.0.0.0"
+          "GHEngine": "1.0.0.0",
+          "GHEngineJSON": "1.0.0.0"
         },
         "runtime": {
           "Project_SMCRT_Server_Interface.dll": {}
@@ -26,6 +27,14 @@
       "GHEngine/1.0.0.0": {
         "runtime": {
           "GHEngine.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "GHEngineJSON/1.0.0.0": {
+        "runtime": {
+          "GHEngineJSON.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -53,6 +62,11 @@
       "sha512": ""
     },
     "GHEngine/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "GHEngineJSON/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

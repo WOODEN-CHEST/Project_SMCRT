@@ -13,14 +13,20 @@ public interface IEntityCollection
     IEnumerable<ulong> Entities { get; }
     IEnumerable<EntityComponent> Components { get; }
 
+    event EventHandler<ComponentAddEventArgs>? ComponentAdd;
+    event EventHandler<ComponentRemoveEventArgs>? ComponentRemove;
+    event EventHandler<EntityAddEventArgs>? EntityAdd;
+    event EventHandler<EntityRemoveEventArgs>? EntityRemove;
+
 
     // Methods.
     bool CreateEntity(ulong id, params EntityComponent[] components);
     bool RemoveEntity(ulong id);
-    IEnumerable<EntityComponent>? GetComponents(ulong entity);
-    IEnumerable<EntityComponent>? GetComponents(NamespacedKey key);
-    EntityComponent? GetComponent(ulong entity, NamespacedKey key);
+    IEnumerable<T> GetComponents<T>(ulong entity) where T : EntityComponent;
+    IEnumerable<T> GetComponents<T>(NamespacedKey key) where T : EntityComponent;
+    T? GetComponent<T>(ulong entity, NamespacedKey key) where T : EntityComponent;
     bool RemoveComponent(ulong entity, NamespacedKey key);
     bool ClearComponents(ulong entity);
     bool AddComponent(ulong entity, EntityComponent component);
+    ulong? GetEntityOfComponent(EntityComponent component);
 }

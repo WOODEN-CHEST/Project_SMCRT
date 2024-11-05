@@ -9,5 +9,10 @@ namespace Project_SMCRT_Server.World.Component.System;
 
 public interface IComponentSystem
 {
+    // Fields.
+    event EventHandler<ComponentUpdateEventArgs>? ComponentUpdate;
+    
+
+    // Methods.
     void Execute(IGameWorld world, IProgramTime time);
 }

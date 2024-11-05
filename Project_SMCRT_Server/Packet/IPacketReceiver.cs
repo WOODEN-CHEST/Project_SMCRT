@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_SMCRT_Server.World.Component.System;
+namespace Project_SMCRT_Server.Packet;
 
-public class SystemMessageQueue
+public interface IPacketReceiver
 {
+    public void ReceivePacket(SMCRTPacket packet);
 }

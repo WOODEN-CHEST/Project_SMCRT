@@ -10,7 +10,7 @@ namespace Project_SMCRT_Server.World.Component;
 public class PositionComponent : EntityComponent
 {
     // Static fields.
-    public static readonly NamespacedKey KEY = new(NamespacedKey.NAMESPACE_SMCRT, "position");
+    public static readonly NamespacedKey KEY = NamespacedKey.Default("position");
 
 
     // Fields.

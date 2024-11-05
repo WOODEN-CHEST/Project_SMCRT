@@ -14,10 +14,16 @@ public class DefaultEntityCollection : IEntityCollection
 
     public IEnumerable<EntityComponent> Components => _combinedByType.Values.SelectMany(components => components);
 
+    public event EventHandler<ComponentAddEventArgs>? ComponentAdd;
+    public event EventHandler<ComponentRemoveEventArgs>? ComponentRemove;
+    public event EventHandler<EntityAddEventArgs>? EntityAdd;
+    public event EventHandler<EntityRemoveEventArgs>? EntityRemove;
+
 
     // Private fields.
     private readonly Dictionary<ulong, Dictionary<NamespacedKey, EntityComponent>> _componentsByEntity = new();
     private readonly Dictionary<NamespacedKey, HashSet<EntityComponent>> _combinedByType = new();
+    private readonly Dictionary<EntityComponent, ulong> _entitiesByComponents = new();
 
 
     // Private methods. 
@@ -61,7 +67,9 @@ public class DefaultEntityCollection : IEntityCollection
 
         EntityComponents[component.Key] = component;
         EnsureTypeSet(component.Key).Add(component);
+        _entitiesByComponents.Add(component, entity);
 
+        ComponentAdd?.Invoke(this, new(component, entity));
         return true;
     }
 
@@ -75,11 +83,13 @@ public class DefaultEntityCollection : IEntityCollection
         foreach (EntityComponent Component in EntityComponents.Values)
         {
             _combinedByType[Component.Key].Remove(Component);
+            ComponentRemove?.Invoke(this, new(Component, entity));
+            _entitiesByComponents.Remove(Component);
         }
         EntityComponents.Clear();
         return true;
     }
-    public EntityComponent? GetComponent(ulong entity, NamespacedKey key)
+    public T? GetComponent<T>(ulong entity, NamespacedKey key) where T : EntityComponent
     {
         ArgumentNullException.ThrowIfNull(key, nameof(key));
         if (!_componentsByEntity.TryGetValue(entity, out Dictionary<NamespacedKey, EntityComponent>? EntityComponents))
@@ -87,16 +97,16 @@ public class DefaultEntityCollection : IEntityCollection
             return null;
         }
         EntityComponents.TryGetValue(key, out EntityComponent? Component);
-        return Component;
+        return (T?)Component;
     }
 
-    public IEnumerable<EntityComponent>? GetComponents(ulong entity)
+    public IEnumerable<T> GetComponents<T>(ulong entity) where T : EntityComponent
     {
         if (!_componentsByEntity.TryGetValue(entity, out Dictionary<NamespacedKey, EntityComponent>? EntityComponents))
         {
-            return null;
+            return Array.Empty<T>();
         }
-        return EntityComponents.Values;
+        return EntityComponents.Values.Select(component => (T)component);
     }
 
     public bool RemoveComponent(ulong entity, NamespacedKey key)
@@ -111,15 +121,18 @@ public class DefaultEntityCollection : IEntityCollection
         {
             EntityComponents.Remove(key);
             _combinedByType[key].Remove(RemovedComponent);
+            _entitiesByComponents.Remove(RemovedComponent);
+
+            ComponentRemove?.Invoke(this, new(RemovedComponent, entity));
             return true;
         }
         return false;
     }
 
-    public IEnumerable<EntityComponent>? GetComponents(NamespacedKey key)
+    public IEnumerable<T> GetComponents<T>(NamespacedKey key) where T : EntityComponent
     {
         _combinedByType.TryGetValue(key, out HashSet<EntityComponent>? Components);
-        return Components;
+        return Components?.Select(component => (T)component) ?? Array.Empty<T>();
     }
 
     public bool CreateEntity(ulong id, params EntityComponent[] components)
@@ -135,7 +148,10 @@ public class DefaultEntityCollection : IEntityCollection
             ArgumentNullException.ThrowIfNull(Component, nameof(components));
             EntityComponents.Add(Component.Key, Component);
             EnsureTypeSet(Component.Key).Add(Component);
+            _entitiesByComponents.Add(Component, id);
         }
+
+        EntityAdd?.Invoke(this, new(id, components));
         return true;
     }
 
@@ -149,12 +165,22 @@ public class DefaultEntityCollection : IEntityCollection
         foreach (EntityComponent Component in EntityComponents.Values)
         {
             _combinedByType[Component.Key].Remove(Component);
+            _entitiesByComponents.Remove(Component);
         }
         _componentsByEntity.Remove(id);
+        
+
+        EntityRemove?.Invoke(this, new(id));
         return true;
     }
 
-
-    // Types.
-    private readonly record struct EntityToAdd(ulong EntityID, EntityComponent[] Components);
+    public ulong? GetEntityOfComponent(EntityComponent component)
+    {
+        ArgumentNullException.ThrowIfNull(component, nameof(component));
+        if (_entitiesByComponents.TryGetValue(component, out ulong Entity))
+        {
+            return Entity;
+        }
+        return null;
+    }
 }

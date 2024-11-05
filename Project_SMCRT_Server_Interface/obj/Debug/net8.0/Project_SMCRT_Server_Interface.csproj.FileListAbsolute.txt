@@ -21,3 +21,5 @@ D:\Workstations\Programming\Projects\Project_SMCRT\Project_SMCRT_Server_Interfac
 D:\Workstations\Programming\Projects\Project_SMCRT\Project_SMCRT_Server_Interface\obj\Debug\net8.0\Project_SMCRT_Server_Interface.pdb
 D:\Workstations\Programming\Projects\Project_SMCRT\Project_SMCRT_Server_Interface\obj\Debug\net8.0\Project_SMCRT_Server_Interface.genruntimeconfig.cache
 D:\Workstations\Programming\Projects\Project_SMCRT\Project_SMCRT_Server_Interface\obj\Debug\net8.0\ref\Project_SMCRT_Server_Interface.dll
+D:\Workstations\Programming\Projects\Project_SMCRT\Project_SMCRT_Server_Interface\bin\Debug\net8.0\GHEngineJSON.dll
+D:\Workstations\Programming\Projects\Project_SMCRT\Project_SMCRT_Server_Interface\bin\Debug\net8.0\GHEngineJSON.pdb

@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|d:\\workstations\\programming\\projects\\project_smcrt\\project_smcrt_server\\world\\component\\system\\systemmessagequeue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|solutionrelative:project_smcrt_server\\world\\component\\system\\systemmessagequeue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|d:\\workstations\\programming\\projects\\project_smcrt\\project_smcrt_server\\pack\\json\\thrusterdeconstructor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|solutionrelative:project_smcrt_server\\pack\\json\\thrusterdeconstructor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|d:\\workstations\\programming\\projects\\project_smcrt\\project_smcrt_server\\pack\\jsoncomponentdeconstructor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|solutionrelative:project_smcrt_server\\pack\\jsoncomponentdeconstructor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|d:\\workstations\\programming\\projects\\project_smcrt\\project_smcrt_server\\world\\component\\collisionmeshcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|solutionrelative:project_smcrt_server\\world\\component\\collisionmeshcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +22,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ThrusterDeconstructor.cs",
+              "DocumentMoniker": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\Pack\\JSON\\ThrusterDeconstructor.cs",
+              "RelativeDocumentMoniker": "Project_SMCRT_Server\\Pack\\JSON\\ThrusterDeconstructor.cs",
+              "ToolTip": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\Pack\\JSON\\ThrusterDeconstructor.cs",
+              "RelativeToolTip": "Project_SMCRT_Server\\Pack\\JSON\\ThrusterDeconstructor.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAgwCwAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T13:57:17.496Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CollisionMeshComponent.cs",
+              "DocumentMoniker": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\World\\Component\\CollisionMeshComponent.cs",
+              "RelativeDocumentMoniker": "Project_SMCRT_Server\\World\\Component\\CollisionMeshComponent.cs",
+              "ToolTip": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\World\\Component\\CollisionMeshComponent.cs",
+              "RelativeToolTip": "Project_SMCRT_Server\\World\\Component\\CollisionMeshComponent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHIAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T13:13:27.588Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -38,15 +72,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SystemMessageQueue.cs",
-              "DocumentMoniker": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\World\\Component\\System\\SystemMessageQueue.cs",
-              "RelativeDocumentMoniker": "Project_SMCRT_Server\\World\\Component\\System\\SystemMessageQueue.cs",
-              "ToolTip": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\World\\Component\\System\\SystemMessageQueue.cs",
-              "RelativeToolTip": "Project_SMCRT_Server\\World\\Component\\System\\SystemMessageQueue.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAfAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "JSONComponentDeconstructor.cs",
+              "DocumentMoniker": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\Pack\\JSONComponentDeconstructor.cs",
+              "RelativeDocumentMoniker": "Project_SMCRT_Server\\Pack\\JSONComponentDeconstructor.cs",
+              "ToolTip": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\Pack\\JSONComponentDeconstructor.cs",
+              "RelativeToolTip": "Project_SMCRT_Server\\Pack\\JSONComponentDeconstructor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-03T16:24:34.884Z",
+              "WhenOpened": "2024-11-05T13:10:21.843Z",
               "EditorCaption": ""
             }
           ]

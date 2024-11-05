@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_SMCRT_Server.Packet.Client;
+namespace Project_SMCRT_Server.Packet.Server;
 
 public abstract class ServerPacket : SMCRTPacket
 {
