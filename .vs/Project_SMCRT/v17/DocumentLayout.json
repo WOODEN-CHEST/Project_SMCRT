@@ -1,7 +1,20 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|d:\\workstations\\programming\\projects\\project_smcrt\\project_smcrt_server\\pack\\json\\genericjsondeconstructor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|solutionrelative:project_smcrt_server\\pack\\json\\genericjsondeconstructor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|d:\\workstations\\programming\\projects\\project_smcrt\\project_smcrt_server\\pack\\json\\spritedeconstructor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|solutionrelative:project_smcrt_server\\pack\\json\\spritedeconstructor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|d:\\workstations\\programming\\projects\\project_smcrt\\project_smcrt_server\\world\\component\\entitysprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|solutionrelative:project_smcrt_server\\world\\component\\entitysprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,6 +43,45 @@
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GenericJSONDeconstructor.cs",
+              "DocumentMoniker": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\Pack\\JSON\\GenericJSONDeconstructor.cs",
+              "RelativeDocumentMoniker": "Project_SMCRT_Server\\Pack\\JSON\\GenericJSONDeconstructor.cs",
+              "ToolTip": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\Pack\\JSON\\GenericJSONDeconstructor.cs",
+              "RelativeToolTip": "Project_SMCRT_Server\\Pack\\JSON\\GenericJSONDeconstructor.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwA4AAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T23:18:22.627Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SpriteDeconstructor.cs",
+              "DocumentMoniker": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\Pack\\JSON\\SpriteDeconstructor.cs",
+              "RelativeDocumentMoniker": "Project_SMCRT_Server\\Pack\\JSON\\SpriteDeconstructor.cs",
+              "ToolTip": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\Pack\\JSON\\SpriteDeconstructor.cs",
+              "RelativeToolTip": "Project_SMCRT_Server\\Pack\\JSON\\SpriteDeconstructor.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAowFIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T23:11:46.288Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EntitySprite.cs",
+              "DocumentMoniker": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\World\\Component\\EntitySprite.cs",
+              "RelativeDocumentMoniker": "Project_SMCRT_Server\\World\\Component\\EntitySprite.cs",
+              "ToolTip": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\World\\Component\\EntitySprite.cs",
+              "RelativeToolTip": "Project_SMCRT_Server\\World\\Component\\EntitySprite.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T23:01:07.058Z",
+              "EditorCaption": ""
             }
           ]
         }

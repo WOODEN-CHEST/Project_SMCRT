@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace Project_SMCRT_Server.Pack.Script;
 
-public class WorldScript
+public class EntitySpawnScriptEvent
 {
-    // Fields.
-
 }

@@ -22,8 +22,7 @@ public class MotionDeconstructor : IJSONComponentDeconstructor
 
         if (compound.GetOptionalVerified<JSONList>(KEY_MOTION, out JSONList? PositionList))
         {
-            Component.Motion = new(genericDeconstructor.GetAsDouble(PositionList!.GetVerified<object>(0)),
-                genericDeconstructor.GetAsDouble(PositionList!.GetVerified<object>(0)!));
+            Component.Motion = genericDeconstructor.GetVector(PositionList!);
         }
         if (compound.GetOptionalVerified<object>(KEY_ANGULAR_MOTION, out object? Rotation))
         {

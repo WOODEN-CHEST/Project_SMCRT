@@ -22,8 +22,7 @@ public class PositionDeconstructor : IJSONComponentDeconstructor
 
         if (compound.GetOptionalVerified<JSONList>(KEY_POSITION, out JSONList? PositionList))
         {
-            Component.Position = new(genericDeconstructor.GetAsDouble(PositionList!.GetVerified<object>(0)),
-                genericDeconstructor.GetAsDouble(PositionList!.GetVerified<object>(0)!));
+            Component.Position = genericDeconstructor.GetVector(PositionList!);
         }
         if (compound.GetOptionalVerified<object>(KEY_ROTATION, out object? Rotation))
         {
