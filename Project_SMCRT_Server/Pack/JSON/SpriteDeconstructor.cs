@@ -51,23 +51,14 @@ public class SpriteDeconstructor : IJSONComponentDeconstructor
 
     private EntitySprite GetSingleSprite(JSONCompound compound, GenericJSONDeconstructor genericDeconstructor)
     {
-        DVector2 Offset;
-        DVector2 Size;
-        GenericColorMask Mask;
-        string AnimName;
-        SpriteEffects Effects;
-        float ZIndex;
+        DVector2 Offset = GetOffset(compound, genericDeconstructor);
+        DVector2 Size = GetSize(compound, genericDeconstructor);
+        GenericColorMask Mask = GetColorMask(compound, genericDeconstructor);
+        string AnimName = compound.GetVerified<string>(KEY_ANIMATION);
+        SpriteEffects Effects = GetEffects(compound);
+        float ZIndex = GetZIndex(compound, genericDeconstructor);
 
-
-
-
-
-
-        return new EntitySprite(
-            genericDeconstructor.GetVector(compound.GetVerified<JSONList>(KEY_OFFSET)),
-            genericDeconstructor.GetVector(compound.GetVerified<JSONList>(KEY_SIZE)),
-            GetColorMask()
-            );
+        return new EntitySprite( Offset, Size, Mask, Effects, ZIndex, AnimName);
     }
 
     private DVector2 GetOffset(JSONCompound compound, GenericJSONDeconstructor genericDeconstructor)
@@ -89,7 +80,7 @@ public class SpriteDeconstructor : IJSONComponentDeconstructor
     }
 
 
-    private GenericColorMask GetColorMask(JSONCompound compound)
+    private GenericColorMask GetColorMask(JSONCompound compound, GenericJSONDeconstructor genericDeconstructor)
     {
         GenericColorMask ColorMask = new();
         if (!compound.GetOptionalVerified(KEY_MASK, out JSONList? MaskCompound))
@@ -97,16 +88,43 @@ public class SpriteDeconstructor : IJSONComponentDeconstructor
             return ColorMask;
         }
 
-        if (compound.GetOptionalVerified(KEY_, out JSONList? MaskCompound))
+        if (compound.GetOptionalVerified(KEY_COLOR, out object? Color))
         {
-            return ColorMask;
+            ColorMask.Mask = genericDeconstructor.GetColor(Color!);
         }
-
+        if (compound.GetOptionalVerified(KEY_BRIGHTNESS, out object? Brightness))
+        {
+            ColorMask.Brightness = (float)genericDeconstructor.GetAsDouble(Brightness!);
+        }
+        if (compound.GetOptionalVerified(KEY_OPACITY, out object? Opacity))
+        {
+            ColorMask.Opacity = (float)genericDeconstructor.GetAsDouble(Opacity!);
+        }
+        return ColorMask;
     }
 
-    private SpriteEffects GetEffects(string value)
+    private SpriteEffects GetEffects(JSONCompound compound)
     {
+        if (!compound.GetOptionalVerified(KEY_EFFECTS, out string? Name))
+        {
+            return SpriteEffects.None;
+        }
 
+        return Name switch
+        {
+            VALUE_FLIP_VERTICALLY => SpriteEffects.FlipVertically,
+            VALUE_FLIP_HORIZONTALLY => SpriteEffects.FlipHorizontally,
+            _ => throw new PackContentException($"Invalid sprite effects type: \"{Name}\"")
+        };
+    }
+
+    private float GetZIndex(JSONCompound compound, GenericJSONDeconstructor genericDeconstructor)
+    {
+        if (compound.GetOptionalVerified(KEY_Z_INDEX, out object? Index))
+        {
+            return (float)genericDeconstructor.GetAsDouble(Index!);
+        }
+        return 0f;
     }
 
 

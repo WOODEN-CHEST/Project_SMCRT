@@ -1,0 +1,28 @@
+{
+    "sound": [
+        {
+            "name": "MainMenu.Music",
+            "path": "main_menu"
+        },
+        {
+            "name": "UI.Click1",
+            "path": "click_1"
+        },
+        {
+            "name": "UI.Click2",
+            "path": "click_2"
+        },
+        {
+            "name": "UI.Click3",
+            "path": "click_3"
+        },
+        {
+            "name": "UI.Click4",
+            "path": "click_4"
+        },
+        {
+            "name": "UI.Highlight",
+            "path": "ui_highlight"
+        }
+    ]
+}

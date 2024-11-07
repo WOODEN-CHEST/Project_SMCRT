@@ -2,6 +2,7 @@
 using Project_SMCRT_Server.Pack;
 using Project_SMCRT_Server.Packet;
 using Project_SMCRT_Server.World;
+using Project_SMCRT_Server.World.Script;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,4 +28,5 @@ public interface ISMCRTServer : IPacketReceiver
     void Stop();
     void ScheduleAction(Action action);
     IGameWorld? GetWorld(ulong id);
+    void RunWorld(IWorldScript script);
 }

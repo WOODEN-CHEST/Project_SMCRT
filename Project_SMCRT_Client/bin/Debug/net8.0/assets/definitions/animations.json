@@ -1,0 +1,18 @@
+{
+    "animation": [
+        {
+            "name": "SpaceBackground",
+            "frames": [
+                "space_bg"
+            ],
+            "is_animated": false
+        },
+        {
+            "name": "UI.GenericButton",
+            "frames": [
+                "generic_button"
+            ],
+            "is_animated": false
+        }
+    ]
+}

@@ -2,6 +2,7 @@
 using Project_SMCRT_Server.Pack;
 using Project_SMCRT_Server.World.Component;
 using Project_SMCRT_Server.World.Component.System;
+using Project_SMCRT_Server.World.Script;
 
 namespace Project_SMCRT_Server.World;
 
@@ -37,6 +38,13 @@ public class DefaultGameWorld : IGameWorld
     public IEnumerable<ulong> Entities => _entities.Entities;
     public IEnumerable<EntityComponent> Components => _entities.Components;
 
+    public IWorldScript Script
+    {
+        get => _script;
+        set => _script = value;
+    }
+    public string? CurrentMusicName { get; set; }
+
     public event EventHandler<ComponentUpdateEventArgs>? ComponentUpdate;
     public event EventHandler<ComponentAddEventArgs>? ComponentAdd;
     public event EventHandler<ComponentRemoveEventArgs>? ComponentRemove;
@@ -44,10 +52,12 @@ public class DefaultGameWorld : IGameWorld
     public event EventHandler<EntityRemoveEventArgs>? EntityRemove;
     public event EventHandler<SimulationSpeedChangeArgs> SimulationSpeedChange;
     public event EventHandler<PauseChangeArgs> PauseChange;
+    public event EventHandler<WorldSoundPlayEventArgs> SoundPlay;
 
 
     // Private fields.
     private bool _isSimulationPaused = false;
+    private IWorldScript _script;
 
     private readonly IIDProvider _entityIDProvider = new SequentialIDProvider();
     private readonly IEntityCollection _entities = new DefaultEntityCollection();
@@ -99,6 +109,10 @@ public class DefaultGameWorld : IGameWorld
         foreach (IComponentSystem System in _systems)
         {
             System.Execute(this, _time.VirtualTime);
+        }
+        foreach (IScriptEvent Event in _script.Move(_time.VirtualTime.PassedTime))
+        {
+            Event.ExecuteEvent(this);
         }
     }
 
@@ -192,5 +206,10 @@ public class DefaultGameWorld : IGameWorld
     public ulong? GetEntityOfComponent(EntityComponent component)
     {
         return _entities.GetEntityOfComponent(component);
+    }
+
+    public void PlaySound(string soundName, DVector2 position, double speed, float volume, int? sampleRate)
+    {
+        SoundPlay?.Invoke(this, new(soundName, position, speed, volume, sampleRate));
     }
 }

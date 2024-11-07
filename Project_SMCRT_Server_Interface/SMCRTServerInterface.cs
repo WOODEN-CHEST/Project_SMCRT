@@ -71,6 +71,7 @@ internal class SMCRTServerInterface
             Archiver.Archive(ArchivesDirectory, LogPath);
         }
 
+        File.Delete(LogPath);
         return new ConsoleLogger(new GHLogger(LogPath));
     }
 

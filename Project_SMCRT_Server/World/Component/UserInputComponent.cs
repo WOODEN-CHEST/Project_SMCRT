@@ -76,14 +76,22 @@ public class UserInputComponent : EntityComponent
     // Inherited methods.,
     public override EntityComponent CreateCopy()
     {
-        UserInputComponent CreatedComponent = new()
-        {
-            IsInputRegistered = IsInputRegistered
-        };
-
-        CreatedComponent.UpdateInputActions(_previousInputActions);
-        CreatedComponent.UpdateInputActions(_currentInputActions);
-
+        UserInputComponent CreatedComponent = new();
+        CreatedComponent.SetFrom(this);
         return CreatedComponent;
+    }
+
+    public override bool SetFrom(EntityComponent component)
+    {
+        if (component is not UserInputComponent Target)
+        {
+            return false;
+        }
+
+        IsInputRegistered = Target.IsInputRegistered;
+        UpdateInputActions(Target._previousInputActions);
+        UpdateInputActions(Target._currentInputActions);
+
+        return true;
     }
 }

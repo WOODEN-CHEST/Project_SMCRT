@@ -25,10 +25,21 @@ public class PositionComponent : EntityComponent
     // Inherited methods.
     public override EntityComponent CreateCopy()
     {
-        return new PositionComponent()
+        PositionComponent NewComponent = new();
+        NewComponent.SetFrom(this);
+        return NewComponent;
+    }
+
+    public override bool SetFrom(EntityComponent component)
+    {
+        if (component is not PositionComponent Target)
         {
-            Position = Position,
-            Rotation = Rotation
-        };
+            return false;
+        }
+
+        Position = Target.Position;
+        Rotation = Target.Rotation;
+
+        return true;
     }
 }

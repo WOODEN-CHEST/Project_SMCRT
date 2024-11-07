@@ -45,11 +45,23 @@ public class ThrusterComponent : EntityComponent
     // Inherited methods.
     public override EntityComponent CreateCopy()
     {
-        ThrusterComponent Copy = new();
-        foreach (EntityThruster Thruster in _thrusers)
+        ThrusterComponent CreatedComponent = new();
+        CreatedComponent.SetFrom(this);
+        return CreatedComponent;
+    }
+
+    public override bool SetFrom(EntityComponent component)
+    {
+        if (component is not ThrusterComponent Target)
         {
-            Copy.AddThruster(Thruster);
+            return false;
         }
-        return Copy;
+
+        _thrusers.Clear();
+        foreach (EntityThruster Thruster in Target._thrusers)
+        {
+            AddThruster(Thruster.CreateCopy());
+        }
+        return true;
     }
 }

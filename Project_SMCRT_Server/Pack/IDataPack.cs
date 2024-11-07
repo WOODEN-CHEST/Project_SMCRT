@@ -14,9 +14,11 @@ public interface IDataPack
     Version TargetedGameVersion { get; } 
     IEnumerable<EntityDefinition> EntityDefinitions { get; }
     NamespacedKey? PlanetDefinition { get; }
+    IEnumerable<WeaponDefinition> Weapons { get; }
 
 
 
     // Methods.
     EntityDefinition? GetEntityDefinition(NamespacedKey key);
+    WeaponDefinition? GetWeaponDefinition(NamespacedKey key);
 }

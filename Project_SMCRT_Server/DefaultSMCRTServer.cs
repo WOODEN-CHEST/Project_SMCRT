@@ -2,11 +2,13 @@
 using GHEngine.Collections;
 using GHEngine.Logging;
 using Project_SMCRT_Server.Pack;
+using Project_SMCRT_Server.Pack.JSON;
 using Project_SMCRT_Server.Packet;
 using Project_SMCRT_Server.Packet.Server;
 using Project_SMCRT_Server.Player;
 using Project_SMCRT_Server.World;
 using Project_SMCRT_Server.World.Monitor;
+using Project_SMCRT_Server.World.Script;
 using System.Diagnostics;
 
 namespace Project_SMCRT_Server;
@@ -203,6 +205,13 @@ public class DefaultSMCRTServer : ISMCRTServer
     public void ReceivePacket(SMCRTPacket packet)
     {
         _playerManager.ReceivePacket(packet);
+    }
+
+    public void RunWorld(IWorldScript script)
+    {
+        ulong ID = 1uL;
+        IGameWorld World = new DefaultGameWorld(ID, Pack);
+        _worlds.Add(ID, new GameWorldBundle(World, new DefaultWorldMonitor(World)));
     }
 
 

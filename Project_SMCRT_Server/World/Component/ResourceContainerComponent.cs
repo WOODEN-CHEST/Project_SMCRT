@@ -31,16 +31,27 @@ public class ResourceContainerComponent : EntityComponent
     // Inherited methods.
     public override EntityComponent CreateCopy()
     {
-        return new ResourceContainerComponent()
+        ResourceContainerComponent CreatedComponent = new();
+        CreatedComponent.SetFrom(this);
+        return CreatedComponent;
+    }
+
+    public override bool SetFrom(EntityComponent component)
+    {
+        if (component is not ResourceContainerComponent Target)
         {
-            Metal = Metal,
-            MetalPerSecond = MetalPerSecond,
-            Composites = Composites,
-            CompositesPerSecond = CompositesPerSecond,
-            Fuel = Fuel,
-            FuelPerSecond = FuelPerSecond,
-            Research = Research,
-            ResearchPerSecond = ResearchPerSecond,
-        };
+            return false;
+        }
+
+        Metal = Target.Metal;
+        MetalPerSecond = Target.MetalPerSecond;
+        Composites = Target.Composites;
+        CompositesPerSecond = Target.CompositesPerSecond;
+        Fuel = Target.Fuel;
+        FuelPerSecond = Target.FuelPerSecond;
+        Research = Target.Research;
+        ResearchPerSecond = Target.ResearchPerSecond;
+
+        return true;
     }
 }

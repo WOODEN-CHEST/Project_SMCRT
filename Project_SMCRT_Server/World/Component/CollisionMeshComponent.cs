@@ -19,6 +19,7 @@ public class CollisionMeshComponent : EntityComponent
     public IEnumerable<ulong> ExcludedCollisionEntities => _excludedCollisionEntities;
     public IEnumerable<ulong> RecentlyCollidedEntities => _recentlyCollidedEntities;
     public double BoundingCircleRadius { get; private set; }
+    public bool IsReactionAlwaysDone { get; set; } = false;
 
 
     // Private fields.
@@ -101,19 +102,38 @@ public class CollisionMeshComponent : EntityComponent
     // Inherited methods.
     public override EntityComponent CreateCopy()
     {
-        CollisionMeshComponent Copy = new();
+        MotionComponent NewComponent = new();
+        NewComponent.SetFrom(this);
+        return NewComponent;
+    }
 
-        foreach (DEdge TargetEdge in _edges)
+    public override bool SetFrom(EntityComponent component)
+    {
+        if (component is not CollisionMeshComponent Target)
         {
-            Copy._edges.Add(TargetEdge);
+            return false;
         }
-        foreach (ulong Entity in _excludedCollisionEntities)
-        {
-            Copy._excludedCollisionEntities.Add(Entity);
-        }
-        Copy.IsCollisionEnabled = IsCollisionEnabled;
-        Copy.BoundingCircleRadius = BoundingCircleRadius;
 
-        return Copy;
+        _edges.Clear();
+        _excludedCollisionEntities.Clear();
+        _recentlyCollidedEntities.Clear();
+
+        foreach (DEdge TargetEdge in Target._edges)
+        {
+            _edges.Add(TargetEdge);
+        }
+        foreach (ulong Entity in Target._excludedCollisionEntities)
+        {
+            _excludedCollisionEntities.Add(Entity);
+        }
+        foreach (ulong Entity in Target._recentlyCollidedEntities)
+        {
+            _recentlyCollidedEntities.Add(Entity);
+        }
+        IsCollisionEnabled = Target.IsCollisionEnabled;
+        BoundingCircleRadius = Target.BoundingCircleRadius;
+        IsReactionAlwaysDone = Target.IsReactionAlwaysDone;
+
+        return true;
     }
 }

@@ -25,10 +25,21 @@ public class MotionComponent : EntityComponent
     // Inherited methods.
     public override EntityComponent CreateCopy()
     {
-        return new MotionComponent()
+        MotionComponent NewComponent = new();
+        NewComponent.SetFrom(this);
+        return NewComponent;
+    }
+
+    public override bool SetFrom(EntityComponent component)
+    {
+        if (component is not MotionComponent Target)
         {
-            Motion = Motion,
-            AngularMotion = AngularMotion
-        };
+            return false;
+        }
+
+        Motion = Target.Motion;
+        AngularMotion = Target.AngularMotion;
+
+        return true;
     }
 }

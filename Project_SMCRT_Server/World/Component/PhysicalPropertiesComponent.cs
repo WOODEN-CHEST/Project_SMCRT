@@ -61,11 +61,17 @@ public class PhysicalPropertiesComponent : EntityComponent
             : Math.Clamp(value, ATTRACTION_MIN, ATTRACTION_MAX);
     }
 
+    public double MaxHealth
+    {
+        get => _maxHealth;
+        set => _maxHealth = double.IsNaN(value) ? HEALTH_DEFAULT
+            : Math.Clamp(value, HEALTH_MIN, HEALTH_MAX);
+    }
     public double Health
     {
         get => _health;
-        set => _health = double.IsNaN(value) ? HEALTH_DEFAULT
-            : Math.Clamp(value, HEALTH_MIN, HEALTH_MAX);
+        set => _health = double.IsNaN(value) ? _maxHealth
+            : Math.Clamp(value, HEALTH_MIN, _maxHealth);
     }
 
     public double FlameStartTemperature
@@ -94,7 +100,8 @@ public class PhysicalPropertiesComponent : EntityComponent
 
     // Private fields.
     private double _mass = MASS_DEFAULT;
-    private double _health = HEALTH_DEFAULT;
+    private double _maxHealth = HEALTH_DEFAULT;
+    private double _health;
     private double _temperature = TEMPERATURE_DEFAULT;
     private double _attraction = ATTRACTION_DEFAULT;
     private double _flameStartTemperature = ATTRACTION_DEFAULT;
@@ -103,7 +110,10 @@ public class PhysicalPropertiesComponent : EntityComponent
 
 
     // Constructors.
-    public PhysicalPropertiesComponent() : base(KEY) { }
+    public PhysicalPropertiesComponent() : base(KEY)
+    {
+        _health = _maxHealth;
+    }
 
 
     // Inherited methods.

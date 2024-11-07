@@ -21,4 +21,6 @@ public abstract class EntityComponent
 
     // Methods.
     public abstract EntityComponent CreateCopy();
+
+    public abstract bool SetFrom(EntityComponent component);
 }

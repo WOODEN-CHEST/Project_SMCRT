@@ -45,15 +45,26 @@ public class SpriteComponent : EntityComponent
     // Inherited methods.
     public override EntityComponent CreateCopy()
     {
-        SpriteComponent CreatedComponent = new()
-        {
-            IsRenderingEnabled = IsRenderingEnabled
-        };
-
-        foreach (EntitySprite Sprite in _sprites)
-        {
-            CreatedComponent.AddSprite(Sprite);
-        }
+        SpriteComponent CreatedComponent = new();
+        CreatedComponent.SetFrom(this);
         return CreatedComponent;
+    }
+
+    public override bool SetFrom(EntityComponent component)
+    {
+        if (component is not SpriteComponent Target)
+        {
+            return false;
+        }
+
+        _sprites.Clear();
+
+        IsRenderingEnabled = Target.IsRenderingEnabled;
+        foreach (EntitySprite Sprite in Target._sprites)
+        {
+            AddSprite(Sprite);
+        }
+
+        return true;
     }
 }
