@@ -29,7 +29,7 @@ public class DamageComponent : EntityComponent
             : Math.Clamp(value, DAMAGE_MIN, DAMAGE_MAX);
     }
 
-    public double SpeedDamageScale
+    public double SpeedScale
     {
         get => _speedDamageScale;
         set => _speedDamageScale = double.IsNaN(value) ? SPEED_DAMAGE_SCALE_DEFAULT
@@ -49,10 +49,21 @@ public class DamageComponent : EntityComponent
     // Inherited methods.
     public override EntityComponent CreateCopy()
     {
-        return new DamageComponent()
+        DamageComponent Component = new();
+        Component.SetFrom(this);
+        return Component;
+    }
+
+    public override bool SetFrom(EntityComponent component)
+    {
+        if (component is not DamageComponent Target)
         {
-            Damage = Damage,
-            SpeedDamageScale = SpeedDamageScale,
-        };
+            return false;
+        }
+
+        Damage = Target.Damage;
+        SpeedScale = Target.SpeedScale;
+        
+        return true;
     }
 }

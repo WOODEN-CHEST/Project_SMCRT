@@ -16,6 +16,7 @@ public class ThrusterDeconstructor : IJSONComponentDeconstructor
     public const string KEY_ROTATION = "rotation";
     public const string KEY_IS_ROTATION_FOLLOWED = "is_rotation_followed";
     public const string KEY_INPUT_KEY = "input_key";
+    public const string KEY_OFFSET = "offset";
 
 
     // Private methods.
@@ -42,6 +43,10 @@ public class ThrusterDeconstructor : IJSONComponentDeconstructor
             if (Compound.GetOptionalVerified(KEY_IS_ROTATION_FOLLOWED, out bool IsRotationFollowed))
             {
                 Thruster.FollowsRotation = IsRotationFollowed;
+            }
+            if (Compound.GetOptionalVerified(KEY_OFFSET, out JSONList? VertexList))
+            {
+                Thruster.Offset = genericDeconstructor.GetVector(VertexList!);
             }
         }
 

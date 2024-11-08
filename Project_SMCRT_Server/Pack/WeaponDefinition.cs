@@ -17,8 +17,10 @@ public class WeaponDefinition
     public double LaunchSpeedMin { get; private init; }
     public double LaucnSpeedMax { get; private init; }
     public EntityComponent[] EntityStartingComponents { get; private init; }
-    public double ReloadTime { get; private init; }
+    public TimeSpan ReloadTime { get; private init; }
     public int CartridgeSize { get; private init; }
+    public string[] ShootSounds { get; private init; }
+    public string[] ReloadSounds { get; private init; }
 
 
     // Constructors.
@@ -30,8 +32,10 @@ public class WeaponDefinition
         double launchSpeedMin,
         double launchSpeedMax,
         EntityComponent[] startingComponents,
-        double reloadTime,
-        int cartridgeSize)
+        TimeSpan reloadTime,
+        int cartridgeSize,
+        string[] shootSounds,
+        string[] reloadSounds)
     {
         Key = key ?? throw new ArgumentNullException(nameof(key));
         DelayBetweenShots = delayBetweenShots;
@@ -43,5 +47,7 @@ public class WeaponDefinition
         EntityStartingComponents = startingComponents ?? throw new ArgumentNullException(nameof(launchSpeedMax));
         ReloadTime = reloadTime;
         CartridgeSize = cartridgeSize;
+        ShootSounds = shootSounds ?? throw new ArgumentNullException(nameof(shootSounds));
+        ReloadSounds = reloadSounds ?? throw new ArgumentNullException(nameof(reloadSounds));
     }
 }

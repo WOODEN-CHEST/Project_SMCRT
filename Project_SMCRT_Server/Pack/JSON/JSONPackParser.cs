@@ -1,4 +1,5 @@
-﻿using GHEngine.IO.JSON;
+﻿using GHEngine.Assets.Def;
+using GHEngine.IO.JSON;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,8 @@ public class JSONPackParser : IDataPackParser
     public const string FILE_META = "meta.json";
     public const string FILE_SETUP = "setup.json";
     public const string DIR_ENTITIES = "entities";
+    public const string DIR_ASSETS = "assets";
+    public const string DIR_DEFINITIONS = "definitions";
 
     public const string KEY_NAME = "name";
     public const string KEY_DESCRIPTION = "description";
@@ -26,9 +29,11 @@ public class JSONPackParser : IDataPackParser
 
     // Private fields.
     private readonly JSONEntityDeconstructor _entityDeconstructor = new();
+    private readonly JSONAssetDefinitionReader _assetDefinitionReader = new();
 
 
     // Private methods.
+    /* Data Packs. */
     private void AddToPack(IModifiableDataPack pack1, IDataPack pack2)
     {
         foreach (EntityDefinition Definition in pack2.EntityDefinitions)
@@ -52,6 +57,26 @@ public class JSONPackParser : IDataPackParser
         pack1.SetVersion(pack2.TargetedGameVersion);
     }
 
+
+    private IDataPack ParseSinglePack(string path)
+    {
+        IModifiableDataPack Pack = new DefaultDataPack();
+
+        try
+        {
+            ParseMetaInfo(Pack, path);
+            ParseSetup(Pack, path);
+            ParseEntityDefinitions(Pack, path);
+        }
+        catch (PackContentException e)
+        {
+            throw new PackContentException($"Failed to parse pack \"{path}\": {e.Message}");
+        }
+
+        return Pack;
+    }
+
+    /* Meta. */
     private void ParseMetaInfo(IModifiableDataPack pack, string rootPath)
     {
         string MetaPath = Path.Combine(rootPath, FILE_META);
@@ -78,6 +103,7 @@ public class JSONPackParser : IDataPackParser
         }
     }
 
+    /* Entities. */
     private void ParseEntityDefinitions(IModifiableDataPack pack, string rootPath)
     {
         string EntitiesPath = Path.Combine(rootPath, DIR_ENTITIES);
@@ -97,18 +123,12 @@ public class JSONPackParser : IDataPackParser
         }
     }
 
+    /* Setup. */
     private void DeconstructSetup(IModifiableDataPack pack, JSONCompound compound)
     {
-        if (compound.Get(KEY_PLANET, out string? PlanetKey))
+        if (compound.GetOptionalVerified(KEY_PLANET, out JSONCompound? Planet))
         {
-            try
-            {
-                pack.SetPlanet(new NamespacedKey(PlanetKey!));
-            }
-            catch (ArgumentException e)
-            {
-                throw new PackContentException($"Invalid setup planet key. {e.Message}");
-            }
+            pack.SetPlanet(_entityDeconstructor.GetSpawnProperties(Planet!));
         }
     }
 
@@ -128,24 +148,24 @@ public class JSONPackParser : IDataPackParser
         DeconstructSetup(pack, Compound);
     }
 
-    private IDataPack ParseSinglePack(string path)
+
+    /* Assets */
+    private void ParseAssetDefinitions(IModifiableDataPack pack, string rootPath)
     {
-        IModifiableDataPack Pack = new DefaultDataPack();
+        string DefinitionPath = Path.Combine(rootPath, DIR_ASSETS, DIR_DEFINITIONS);
 
-        try
+        if (!Directory.Exists(DefinitionPath))
         {
-            ParseMetaInfo(Pack, path);
-            ParseSetup(Pack, path);
-            ParseEntityDefinitions(Pack, path);
-        }
-        catch (PackContentException e)
-        {
-            throw new PackContentException($"Failed to parse pack \"{path}\": {e.Message}");
+            return;
         }
 
-        return Pack;
+        IAssetDefinitionCollection DefinitionCollection = new GHAssetDefinitionCollection();
+        _assetDefinitionReader.Read(DefinitionCollection, DefinitionPath);
+        foreach (AssetDefinition Definition in DefinitionCollection)
+        {
+            pack.AddAssetDefinition(Definition);
+        }
     }
-
 
     // Inherited methods.
     public IDataPack ParseCombinedPack(string packDirectory)

@@ -15,6 +15,9 @@ public class WeaponComponent : EntityComponent
     // Fields.
     public NamespacedKey WeaponKey { get; set; }
     public TimeSpan TimeSinceWeaponFire { get; set; }
+    public TimeSpan ReloadProgress { get; set; }
+    public int AmmoLeft { get; set; }
+    public InputAction RequiredInputAction { get; set; }
 
 
     // Constructors.
@@ -30,6 +33,17 @@ public class WeaponComponent : EntityComponent
 
     public override bool SetFrom(EntityComponent component)
     {
-        throw new NotImplementedException();
+        if (component is not  WeaponComponent Target)
+        {
+            return false;
+        }
+
+        WeaponKey = Target.WeaponKey;
+        TimeSinceWeaponFire = Target.TimeSinceWeaponFire;
+        ReloadProgress = Target.ReloadProgress;
+        AmmoLeft = Target.AmmoLeft;
+        RequiredInputAction = Target.RequiredInputAction;
+
+        return true;
     }
 }

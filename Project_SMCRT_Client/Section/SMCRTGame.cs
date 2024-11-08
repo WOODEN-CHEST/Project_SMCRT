@@ -139,7 +139,7 @@ public class SMCRTGame : Game, ISectionHolder
     {
         try
         {
-            _rootPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!;
+            _rootPath = Path.GetDirectoryName((Assembly.GetEntryAssembly() ?? Assembly.GetExecutingAssembly()).Location)!;
             _rootApplicationDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), GAME_NAME_INTERNAL);
             Directory.CreateDirectory(_rootApplicationDataPath);
 

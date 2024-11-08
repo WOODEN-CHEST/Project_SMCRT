@@ -20,6 +20,7 @@ public interface IGameWorld : IEntityCollection, ITimeUpdatable
     ulong Planet { get; }
     IWorldScript Script { get; set; }
     public string? CurrentMusicName { get; set; }
+    public IEnumerable<ulong> PlayersEntities { get; }
 
     public event EventHandler<ComponentUpdateEventArgs>? ComponentUpdate;
     public event EventHandler<SimulationSpeedChangeArgs> SimulationSpeedChange;
@@ -31,4 +32,6 @@ public interface IGameWorld : IEntityCollection, ITimeUpdatable
     // Methods.
     void ScheduleAction(Action action);
     void PlaySound(string soundName, DVector2 position, double speed, float volume, int? sampleRate);
+    void CreateEntity(params EntityComponent[] components);
+    public bool IsEntityPlayer(ulong entity);
 }

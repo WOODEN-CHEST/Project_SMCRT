@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GHEngine;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,8 @@ public class EntityThruster
     public InputAction ActivationInputAction { get; set; } = InputAction.None;
 
     public double Rotation { get; set; } = 0d;
+
+    public DVector2 Offset { get; set; } = DVector2.Zero;
 
 
     // Private fields.

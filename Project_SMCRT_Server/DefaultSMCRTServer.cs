@@ -68,7 +68,7 @@ public class DefaultSMCRTServer : ISMCRTServer
         _rootPath = rootPath ?? throw new ArgumentNullException(nameof(rootPath));
         IClientPacketProcessor PacketProcessor = new DefaultClientPacketProcessor(this);
         _playerManager = isInternalServer ? new IntegratedPlayerManager(receiver!, PacketProcessor)
-            : new StandalonePlayerManager(PacketProcessor, options.ServerAddress!, options.ServerPort!.Value, Logger);
+            : throw new NotImplementedException();
     }
 
 

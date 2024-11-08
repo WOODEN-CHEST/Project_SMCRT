@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|d:\\workstations\\programming\\projects\\project_smcrt\\project_smcrt_server\\pack\\weapondefinition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|solutionrelative:project_smcrt_server\\pack\\weapondefinition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{37CD786E-7B2E-4571-A5D3-C82E77B2EF53}|Project_SMCRT_Client\\Project_SMCRT_Client.csproj|d:\\workstations\\programming\\projects\\project_smcrt\\project_smcrt_client\\section\\smcrtgame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37CD786E-7B2E-4571-A5D3-C82E77B2EF53}|Project_SMCRT_Client\\Project_SMCRT_Client.csproj|solutionrelative:project_smcrt_client\\section\\smcrtgame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|d:\\workstations\\programming\\projects\\project_smcrt\\project_smcrt_server\\pack\\idatapack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BFA43C19-8D71-4492-9069-6ABBAD864998}|Project_SMCRT_Server\\Project_SMCRT_Server.csproj|solutionrelative:project_smcrt_server\\pack\\idatapack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{37CD786E-7B2E-4571-A5D3-C82E77B2EF53}|Project_SMCRT_Client\\Project_SMCRT_Client.csproj|d:\\workstations\\programming\\projects\\project_smcrt\\project_smcrt_client\\gameservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37CD786E-7B2E-4571-A5D3-C82E77B2EF53}|Project_SMCRT_Client\\Project_SMCRT_Client.csproj|solutionrelative:project_smcrt_client\\gameservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{37CD786E-7B2E-4571-A5D3-C82E77B2EF53}|Project_SMCRT_Client\\Project_SMCRT_Client.csproj|d:\\workstations\\programming\\projects\\project_smcrt\\project_smcrt_client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37CD786E-7B2E-4571-A5D3-C82E77B2EF53}|Project_SMCRT_Client\\Project_SMCRT_Client.csproj|solutionrelative:project_smcrt_client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,27 +47,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "WeaponDefinition.cs",
-              "DocumentMoniker": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\Pack\\WeaponDefinition.cs",
-              "RelativeDocumentMoniker": "Project_SMCRT_Server\\Pack\\WeaponDefinition.cs",
-              "ToolTip": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\Pack\\WeaponDefinition.cs",
-              "RelativeToolTip": "Project_SMCRT_Server\\Pack\\WeaponDefinition.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAkAAAAdAAAAAAAAAA==",
+              "Title": "SMCRTGame.cs",
+              "DocumentMoniker": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Client\\Section\\SMCRTGame.cs",
+              "RelativeDocumentMoniker": "Project_SMCRT_Client\\Section\\SMCRTGame.cs",
+              "ToolTip": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Client\\Section\\SMCRTGame.cs",
+              "RelativeToolTip": "Project_SMCRT_Client\\Section\\SMCRTGame.cs",
+              "ViewState": "AgIAAHUAAAAAAAAAAAA4wJUAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-07T21:28:57.797Z",
+              "WhenOpened": "2024-11-08T14:46:43.138Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Client\\Program.cs",
+              "RelativeDocumentMoniker": "Project_SMCRT_Client\\Program.cs",
+              "ToolTip": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Client\\Program.cs",
+              "RelativeToolTip": "Project_SMCRT_Client\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-08T14:46:41.943Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "IDataPack.cs",
-              "DocumentMoniker": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\Pack\\IDataPack.cs",
-              "RelativeDocumentMoniker": "Project_SMCRT_Server\\Pack\\IDataPack.cs",
-              "ToolTip": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Server\\Pack\\IDataPack.cs",
-              "RelativeToolTip": "Project_SMCRT_Server\\Pack\\IDataPack.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAIAAAAAAAAAA==",
+              "Title": "GameServices.cs",
+              "DocumentMoniker": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Client\\GameServices.cs",
+              "RelativeDocumentMoniker": "Project_SMCRT_Client\\GameServices.cs",
+              "ToolTip": "D:\\Workstations\\Programming\\Projects\\Project_SMCRT\\Project_SMCRT_Client\\GameServices.cs",
+              "RelativeToolTip": "Project_SMCRT_Client\\GameServices.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-07T21:28:29.273Z",
+              "WhenOpened": "2024-11-08T14:46:41.371Z",
               "EditorCaption": ""
             }
           ]

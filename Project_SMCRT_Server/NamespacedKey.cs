@@ -33,15 +33,15 @@ public class NamespacedKey
         int Separator = fullKey.IndexOf(SPERATOR);
         if (Separator == -1)
         {
-            throw new ArgumentNullException("Missing namespace separator");
+            throw new ArgumentException("Missing namespace separator");
         }
         if (Separator == fullKey.Length - 1)
         {
-            throw new ArgumentNullException("Missing value");
+            throw new ArgumentException("Missing value");
         }
         if (Separator == 0)
         {
-            throw new ArgumentNullException("Missing namespace");
+            throw new ArgumentException("Missing namespace");
         }
 
         Namespace = fullKey[..Separator];

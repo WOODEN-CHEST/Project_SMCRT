@@ -64,4 +64,14 @@ public class JSONEntityDeconstructor
 
         return new EntityDefinition(Key, Components);
     }
+
+    public EntitySpawnProperties GetSpawnProperties(JSONCompound compound)
+    {
+        ArgumentNullException.ThrowIfNull(compound, nameof(compound));
+
+        NamespacedKey Key = GetEntityKey(compound);
+        EntityComponent[] Components = GetComponents(compound);
+
+        return new EntitySpawnProperties(Key, Components);
+    }
 }

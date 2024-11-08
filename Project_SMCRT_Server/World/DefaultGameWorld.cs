@@ -45,6 +45,8 @@ public class DefaultGameWorld : IGameWorld
     }
     public string? CurrentMusicName { get; set; }
 
+    public IEnumerable<ulong> PlayersEntities => throw new NotImplementedException();
+
     public event EventHandler<ComponentUpdateEventArgs>? ComponentUpdate;
     public event EventHandler<ComponentAddEventArgs>? ComponentAdd;
     public event EventHandler<ComponentRemoveEventArgs>? ComponentRemove;
@@ -79,17 +81,17 @@ public class DefaultGameWorld : IGameWorld
     // Private methods.
     private void CreatePlanet()
     {
-        NamespacedKey? PlanetKey = UsedDataPack.PlanetDefinition;
-        if (PlanetKey == null)
+        EntitySpawnProperties? SpawnProperties = UsedDataPack.PlanetDefinition;
+        if (SpawnProperties == null)
         {
             throw new PackContentException("No planet defined.");
         }
-        EntityDefinition PlanetDefinition = UsedDataPack.GetEntityDefinition(PlanetKey)
+        EntityDefinition PlanetDefinition = UsedDataPack.GetEntityDefinition(SpawnProperties.Key)
             ?? throw new PackContentException("Entity definition for defined planet not found");
 
         ulong PlanetID = _entityIDProvider.GetID();
-        _entities.CreateEntity(PlanetID, PlanetDefinition.StartingComponents
-            .Select(component => component.CreateCopy()).ToArray());
+        _entities.CreateEntity(PlanetID, SpawnProperties.PresetComponents.Select(component => component.CreateCopy())
+            .Concat(PlanetDefinition.StartingComponents.Select(component => component.CreateCopy())).ToArray());
         Planet = PlanetID;
     }
 
@@ -97,6 +99,10 @@ public class DefaultGameWorld : IGameWorld
     {
         // Order here matters.
         _systems.Add(new MotionSystem());
+        _systems.Add(new ThrusterSystem());
+        _systems.Add(new WeaponSystem(_entityIDProvider));
+        _systems.Add(new ResourceContainerSystem());
+        _systems.Add(new CollisionSystem());
 
         foreach (IComponentSystem System in _systems)
         {
@@ -211,5 +217,15 @@ public class DefaultGameWorld : IGameWorld
     public void PlaySound(string soundName, DVector2 position, double speed, float volume, int? sampleRate)
     {
         SoundPlay?.Invoke(this, new(soundName, position, speed, volume, sampleRate));
+    }
+
+    public void CreateEntity(params EntityComponent[] components)
+    {
+        CreateEntity(_entityIDProvider.GetID(), components);
+    }
+
+    public bool IsEntityPlayer(ulong entity)
+    {
+        throw new NotImplementedException();
     }
 }

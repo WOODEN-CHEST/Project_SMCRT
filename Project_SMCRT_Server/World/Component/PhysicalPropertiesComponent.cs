@@ -119,11 +119,26 @@ public class PhysicalPropertiesComponent : EntityComponent
     // Inherited methods.
     public override EntityComponent CreateCopy()
     {
-        return new PhysicalPropertiesComponent()
+        PhysicalPropertiesComponent Component = new PhysicalPropertiesComponent();
+        Component.SetFrom(this);
+        return Component;
+    }
+
+    public override bool SetFrom(EntityComponent component)
+    {
+        if (component is not PhysicalPropertiesComponent Target)
         {
-            Mass = Mass,
-            Temperature = Temperature,
-            Attraction = Attraction,
-        };
+            return false;
+        }
+
+        MaxHealth = Target.MaxHealth;
+        Health = Target.Health;
+        Temperature = Target.Temperature;
+        Attraction = Target.Attraction;
+        Mass = Target.Mass;
+        HeatCapacity = Target.HeatCapacity;
+        FlameStartTemperature = Target.FlameStartTemperature;
+
+        return true;
     }
 }

@@ -24,17 +24,20 @@ public class StandalonePlayerManager : IPlayerManager
     private readonly ConcurrentQueue<GHDFCompound> _packetsToSend = new();
 
     private readonly ILogger? _logger;
+    private readonly ISMCRTServer _server;
     private readonly IClientPacketProcessor _packetProcessor;
     private readonly IPAddress _address;
     private readonly short _port;
     private bool _isRunning = false;
     private readonly IGHDFWriter _packetWriter = IGHDFWriter.GetWriterVersion1();
+    private readonly ConcurrentQueue<SMCRTPacket> _queuedPackets = new();
 
 
     // Constructors.
-    public StandalonePlayerManager(IClientPacketProcessor packetProcessor, IPAddress address, short port, ILogger? _logger)
+    public StandalonePlayerManager(ISMCRTServer server, IPAddress address, short port, ILogger? _logger)
     {
-        _packetProcessor = packetProcessor ?? throw new ArgumentNullException(nameof(packetProcessor));
+        _server = server ?? throw new ArgumentNullException(nameof(server));
+        _packetProcessor = new DefaultClientPacketProcessor(server);
         _address = address ?? throw new ArgumentNullException(nameof(_address));
         _port = port;
     }
@@ -63,7 +66,7 @@ public class StandalonePlayerManager : IPlayerManager
         {
             while (IsRunning())
             {
-                TcpClient Client = SafeListener.AcceptTcpClient();
+                TcpClient Client = await SafeListener.AcceptTcpClientAsync();
                 if (!IsRunning())
                 {
                     break;

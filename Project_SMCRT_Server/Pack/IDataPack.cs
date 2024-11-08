@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GHEngine.Assets.Def;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,9 @@ public interface IDataPack
     string Description { get; }
     Version TargetedGameVersion { get; } 
     IEnumerable<EntityDefinition> EntityDefinitions { get; }
-    NamespacedKey? PlanetDefinition { get; }
+    EntitySpawnProperties? PlanetDefinition { get; }
     IEnumerable<WeaponDefinition> Weapons { get; }
+    public IEnumerable<AssetDefinition> AssetDefinitions { get; }
 
 
 
